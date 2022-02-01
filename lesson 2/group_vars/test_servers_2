@@ -1,0 +1,7 @@
+
+---
+ansible_user: node1
+ansible_password: 28llumaguuu
+ansible_sudo_pass: 28llumaguuu
+
+

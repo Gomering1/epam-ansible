@@ -1,0 +1,15 @@
+
+
+---
+- name: Loops playbook
+  hosts: test_servers_2
+  become: yes
+
+  tasks:
+  - name: say hello to ALL
+    debug: msg="Hello {{ item }}"
+    loop:
+         - "Vasya"
+         - "Petya"
+         - "Maks"
+

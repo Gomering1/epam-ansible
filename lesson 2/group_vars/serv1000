@@ -1,0 +1,4 @@
+---
+ansible_user: ilia
+ansible_password: 28llumaguuu
+ansible_sudo_pass: 28llumaguuu

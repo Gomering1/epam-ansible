@@ -1,0 +1,32 @@
+- name: installed httpd created index.html and opened 80 and 443 / tcp ports
+  hosts: test_servers
+  become: yes
+
+  tasks:
+
+  - name: uninstalled httpd
+    yum: name=httpd state=removed
+
+  - name: index.html is removed
+    ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
+
+  - name: closed 80 port
+    ansible.posix.firewalld:
+      zone: public
+      port: 80/tcp
+      permanent: yes
+      state: disabled
+
+  - name: closed 443 port
+    ansible.posix.firewalld:
+      zone: public
+      port: 443/tcp
+      permanent: yes
+      state: disabled
+
+  - name: Reload firewalld
+    systemd:
+      name: firewalld
+      state: reloaded

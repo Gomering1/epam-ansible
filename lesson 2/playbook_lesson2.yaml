@@ -1,0 +1,26 @@
+---
+- name: create_users
+  hosts: test_servers
+  become: yes
+  vars_files:
+    - vars.yml
+  tasks:
+
+
+  - name: Add user Alice with a password
+    user:
+      name: "{{ item.name }}"
+      password: "{{ item.pass | password_hash('sha512') }}"
+      update_password: on_create
+      comment: "{{ item.name }}@example.com"
+      home: "/home/{{ item.name }}"
+      state: present
+
+
+    loop:
+      - name: Alice 
+        pass: "{{ Alice_pass }}"
+      - name: Bob
+        pass: "{{ Bob_pass }}"
+      - name: Carol
+        pass: "{{ Carol_pass }}"
