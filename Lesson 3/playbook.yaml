@@ -1,0 +1,9 @@
+
+---
+- name: installed httpd created index.html and opened 80 and 443 / tcp ports
+  hosts: test_servers
+  become: yes
+  
+  roles:
+    - { role: install_apache, when: ansible_system == 'Linux' }
+    - install_vsftpd

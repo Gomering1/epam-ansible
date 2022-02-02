@@ -1,0 +1,5 @@
+---
+# handlers file for install_apache
+- name: restart apache redhat
+  service: name=httpd state=restarted
+  when: ansible_os_family == "RedHat"
